@@ -2,54 +2,37 @@
 
 @section('content')
 
-
     @include('admin.includes.errors')
 
     <div class="panel panel-default">
 
         <div class="panel-heading">
 
-            Create a new post
+            Create a new category
 
         </div>
 
         <div class="panel-body">
         
-            <form action="{{ route('post.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('category.store') }}" method="post">
                             
                 <!-- {{ csrf_field() }} -->
                 <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
 
                 <div class="form-group">
                 
-                    <label for="title">Title</label>
+                    <label for="name">Name</label>
                     
-                    <input type="text" name="title" class="form-control">
+                    <input type="text" name="name" class="form-control">
 
                 </div>
 
-                <div class="form-group">
-                
-                    <label for="featured">Featured Image</label>
-                    
-                    <input type="file" name="featured" class="form-control">
-
-                </div>
-
-                <div class="form-group">
-                
-                    <label for="content">Content</label>
-                    
-                    <textarea name="content" id="content" cols="5" rows="5" class="form-control"></textarea>
-
-                </div>
-                
                 <div class="form-group">
                                     
                     <div class="text-center">
 
                         <button class="btn btn-success" type="submit">
-                            Store Post
+                            Store Category
                         </button>
 
                     </div>
