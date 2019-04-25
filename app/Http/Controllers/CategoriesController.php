@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Category;
+
 class CategoriesController extends Controller
 {
     /**
@@ -16,7 +18,7 @@ class CategoriesController extends Controller
     public function index()
     {
         
-        
+        return view('admin.categories.index')->with('categories', Category::all());
 
     }
 
@@ -46,8 +48,14 @@ class CategoriesController extends Controller
             'name' => 'required'
 
         ]);
+        
+        $category = new Category;
+        
+        $category->name = $request['name'];
 
-        echo $request['name'];
+        $category->save();
+
+        return redirect()->route('categories');
 
     }
 
@@ -70,7 +78,11 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        //
+        
+        $category = Category::findOrFail($id);
+
+        return view('admin.categories.edit')->with('category', $category);
+
     }
 
     /**
@@ -82,7 +94,15 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $category = Category::findOrFail($id);
+
+        $category->name = $request['name'];
+        
+        $category->save();
+
+        return redirect()->route('categories');
+
     }
 
     /**
@@ -93,6 +113,12 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return redirect()->route('categories');
+        
+
     }
 }

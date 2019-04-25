@@ -48,7 +48,8 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
 
-                    <li><a href="{{ route('admin.home') }}">Home</a></li>
+                        <li><a href="{{ route('admin.home') }}">Home</a></li>
+                        <li><a href="{{ route('categories') }}">Categories</a></li>
                     
                 </ul>
 
