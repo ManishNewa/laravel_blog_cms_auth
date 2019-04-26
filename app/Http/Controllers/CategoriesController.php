@@ -133,7 +133,7 @@ class CategoriesController extends Controller
 
         $notification = array(
 
-            'message' => 'Todo list removed',
+            'message' => 'Category Delete',
             'alert-type' =>'warning'
 
         );

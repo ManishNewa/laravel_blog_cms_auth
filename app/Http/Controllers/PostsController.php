@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Post;
+use App\Category;
+
 class PostsController extends Controller
 {
     /**
@@ -15,7 +18,7 @@ class PostsController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.posts.index')->with('posts', Post::all());
     }
 
     /**
@@ -25,8 +28,22 @@ class PostsController extends Controller
      */
     public function create()
     {
-        
-        return view('admin.posts.create');
+        $categories = Category::all();
+
+        if($categories->count()==0){
+
+            $notification = array(
+
+                'message' => 'You must have some categories before creating a post',
+                'alert-type' =>'error'
+    
+            );
+
+            return redirect()->back()->with($notification);
+
+        }
+
+        return view('admin.posts.create')->with('categories', $categories);
 
     }
 
@@ -38,14 +55,40 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        echo $request['title'];
+        // echo $request['title'];
 
         $this->validate($request,[
             'title' => 'required|max:255',
             'featured' => 'required|image',
-            'content' => 'required'
+            'content' => 'required',
+            'category_id' => 'required'
 
         ]);
+
+        $featured = $request->featured;
+
+        $featured_new_name = time().$featured->getClientOriginalName();
+
+        $featured->move('uploads/posts', $featured_new_name);
+
+        $post = Post::create([
+
+            'title' => $request['title'],
+            'content' => $request['content'],
+            'featured' => 'uploads/posts/' . $featured_new_name,
+            'category_id' => $request->category_id,
+            'slug' => str_slug($request->title)
+
+        ]);
+
+        $notification = array(
+
+            'message' => 'Post created successfully',
+            'alert-type' =>'success'
+
+        );
+        
+        return redirect('/admin/posts')->with($notification);
     }
 
     /**
@@ -90,6 +133,20 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        
+        $post = Post::find($id);
+
+        $post->delete();
+
+        
+        $notification = array(
+
+            'message' => 'The post was trashed successfully',
+            'alert-type' =>'success'
+
+        );
+         
+        return redirect()->back()->with($notification);
+
     }
 }

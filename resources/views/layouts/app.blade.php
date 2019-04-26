@@ -53,6 +53,7 @@
 
                         <li><a href="{{ route('admin.home') }}">Home</a></li>
                         <li><a href="{{ route('categories') }}">Categories</a></li>
+                        <li><a href="{{ route('posts') }}">All Posts</a></li>
                     
                 </ul>
 
