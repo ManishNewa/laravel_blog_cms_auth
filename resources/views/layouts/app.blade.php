@@ -47,7 +47,10 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ route('admin.home') }}">Home</a></li>
+
+                        <li><a href="{{ route('admin.home') }}">Home</a></li>
+                        <li><a href="{{ route('categories') }}">Categories</a></li>
+                    
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -82,10 +85,16 @@
 
                         <li class="list-group-item">
 
+                            <a href="{{ route('category.create') }}">Create new category</a>
+        
+                        </li>
+
+                        <li class="list-group-item">
+
                             <a href="{{ route('post.create') }}">Create new post</a>
 
                         </li>
-
+            
                     </ul>
                 </div>
             @endif
