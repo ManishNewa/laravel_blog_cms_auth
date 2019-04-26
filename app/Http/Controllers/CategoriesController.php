@@ -52,10 +52,17 @@ class CategoriesController extends Controller
         $category = new Category;
         
         $category->name = $request['name'];
+        
+        $notification = array(
+
+            'message' => 'New category added successfully',
+            'alert-type' =>'success'
+
+        );
 
         $category->save();
 
-        return redirect()->route('categories');
+        return redirect()->route('categories')->with($notification);
 
     }
 
@@ -99,9 +106,16 @@ class CategoriesController extends Controller
 
         $category->name = $request['name'];
         
+        $notification = array(
+
+            'message' => 'Category updated successfully',
+            'alert-type' =>'info'
+
+        );
+        
         $category->save();
 
-        return redirect()->route('categories');
+        return redirect()->route('categories')->with($notification);
 
     }
 
@@ -117,7 +131,14 @@ class CategoriesController extends Controller
 
         $category->delete();
 
-        return redirect()->route('categories');
+        $notification = array(
+
+            'message' => 'Todo list removed',
+            'alert-type' =>'warning'
+
+        );
+
+        return redirect()->route('categories')->with($notification);
         
 
     }
