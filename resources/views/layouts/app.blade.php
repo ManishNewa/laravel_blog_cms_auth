@@ -15,7 +15,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
-    
+    {{-- Ekkolightbox --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.css" />
+
+
     <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet">
 
     <style>
@@ -54,7 +57,7 @@
                         <li><a href="{{ route('admin.home') }}">Home</a></li>
                         <li><a href="{{ route('categories') }}">Categories</a></li>
                         <li><a href="{{ route('posts') }}">All Posts</a></li>
-                    
+                        <li> <a href="{{ route('posts.trashed') }}">All Trashed Posts</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -118,6 +121,9 @@
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
     
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
+    
+    
     <script>
       @if(Session::has('message'))
         var type="{{Session::get('alert-type','info')}}"
@@ -138,6 +144,13 @@
               break;
         }
       @endif
+    </script>
+
+    <script>
+        $(document).on('click','[data-toggle="lightbox"]',function(e){
+            e.preventDefault();
+            $(this).ekkoLightbox();
+        });
     </script>
     
 </body>

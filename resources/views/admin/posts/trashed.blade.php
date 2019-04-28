@@ -6,7 +6,7 @@
         
         <div class="panel-heading">
 
-            Published Posts
+            Trashed Posts
             
         </div>
     
@@ -23,47 +23,55 @@
 
                     <th>Edit</th>
 
-                    <th>Trash</th>
+                    <th>Restore</th>
+
+                    <th>Destroy</th>
         
                 </thead>
         
                 <tbody>
-                    
+        
                     @if($posts->count()>0)
 
                         @foreach ($posts as $post)
 
                         <tr>    
 
-                            <td><a href="{{$post->featured}}" data-toggle="lightbox"><img src="{{$post->featured}}" width="100px" alt="Image"></a></td>  
+                            <td><a href="{{$post->featured}}" data-toggle="lightbox"><img src="{{$post->featured}}" height="90px" width="90px" alt="Image"></a></td>  
                         
                             <td>{{ $post->title }}</td>
             
                             <td>                                
-                                <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info btn-xs">
+                                {{-- <a href="{{ route('post.edit', ['id' => $post->id]) }}" class="btn btn-info btn-xs"> --}}
                                     Edit
-                                </a>
+                                {{-- </a> --}}
                             </td>                                        
             
                             <td>
-                                <a href="{{ route('post.delete', ['id' => $post->id]) }}" class="btn btn-danger btn-xs">
-                                    Trash
+                                <a href="{{ route('post.restore', ['id' => $post->id]) }}" class="btn btn-success btn-xs">
+                                    Restore
                                 </a>
-                            </td>                                
-                        </tr>
+                            </td>
                         
+                            <td>
+                                <a href="{{ route('post.kill', ['id' => $post->id]) }}" class="btn btn-danger btn-xs">
+                                    Delete
+                                </a>
+                            </td>
+                                                                    
+                        </tr>
+            
                         @endforeach
-                    
+
                     @else
 
                         <tr>
 
-                            <th colspan="5" class="text-center">No Any Posts.</th>
+                            <th colspan="5" class="text-center">No Trash Posts</th>
 
                         </tr>
 
                     @endif
-        
         
                 </tbody>        
             </table>
