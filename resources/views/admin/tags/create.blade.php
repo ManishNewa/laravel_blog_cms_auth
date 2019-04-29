@@ -2,27 +2,28 @@
 
 @section('content')
 
+    @include('admin.includes.errors')
 
     <div class="panel panel-default">
 
         <div class="panel-heading">
 
-            Update Category : {{ $category->name }}
+            Create a new tag
 
         </div>
 
         <div class="panel-body">
         
-            <form action="{{ route('category.update',['id' => $category->id]) }}" method="post">
+            <form action="{{ route('tag.store') }}" method="post">
                             
                 <!-- {{ csrf_field() }} -->
                 <input type = "hidden" name = "_token" value = "{{ csrf_token() }}">
 
                 <div class="form-group">
                 
-                    <label for="name">Name</label>
+                    <label for="tag">Tag</label>
                     
-                <input type="text" name="name" class="form-control" value="{{ $category->name }}">
+                    <input type="text" name="tag" class="form-control">
 
                 </div>
 
@@ -31,7 +32,7 @@
                     <div class="text-center">
 
                         <button class="btn btn-success" type="submit">
-                            Update Category
+                            Store Tag
                         </button>
 
                     </div>

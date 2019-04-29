@@ -55,8 +55,13 @@
                 <ul class="nav navbar-nav">
 
                         <li><a href="{{ route('admin.home') }}">Home</a></li>
+
                         <li><a href="{{ route('categories') }}">Categories</a></li>
+
                         <li><a href="{{ route('posts') }}">All Posts</a></li>
+
+                        <li><a href="{{ route('tags') }}">All Tags</a></li>
+
                         <li> <a href="{{ route('posts.trashed') }}">All Trashed Posts</a></li>
                 </ul>
 
@@ -91,15 +96,15 @@
                     <ul class="list-group">
 
                         <li class="list-group-item">
-
-                            <a href="{{ route('category.create') }}">Create new category</a>
-        
+                            <a href="{{ route('category.create') }}">Create new category</a>        
                         </li>
 
                         <li class="list-group-item">
-
                             <a href="{{ route('post.create') }}">Create new post</a>
+                        </li>
 
+                        <li class="list-group-item">
+                            <a href="{{ route('tag.create') }}">Create new tag</a>
                         </li>
             
                     </ul>
